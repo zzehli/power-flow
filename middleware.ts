@@ -16,5 +16,5 @@
 export default function middleware() { }
 
 // export const config = {
-//   matcher: ["/dashboard/:path*"],
+//   matcher: ["/workspace/:path*"],
 // };

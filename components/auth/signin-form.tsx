@@ -11,7 +11,7 @@ export function SignInForm() {
   const handleSignIn = async () => {
     setIsLoading(true);
     try {
-      await signIn("azure-ad", { callbackUrl: "/dashboard" });
+      await signIn("azure-ad", { callbackUrl: "/workspace" });
     } catch (error) {
       console.error("Sign in failed:", error);
     } finally {
