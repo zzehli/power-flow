@@ -4,7 +4,6 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Presentation, Menu } from "lucide-react";
 import { useState } from "react";
-import { ThemeToggle } from "@/components/theme-toggle";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { UserNav } from "@/components/navigation/user-nav";
@@ -72,7 +71,6 @@ export function MainNav() {
             ))}
           </div>
           <div className="flex items-center space-x-2">
-            <ThemeToggle />
             {session ? (
               <>
                 <UserNav />
@@ -94,7 +92,6 @@ export function MainNav() {
 
         {/* Mobile Menu */}
         <div className="flex flex-1 items-center justify-end space-x-2 md:hidden">
-          <ThemeToggle />
           {session ? (
             <UserNav />
           ) : (
