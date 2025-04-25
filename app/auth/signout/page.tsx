@@ -57,7 +57,7 @@ export default function SignOutPage() {
                 <>Sign out</>
               )}
             </Button>
-            <Link href="/dashboard">
+            <Link href="/workspace">
               <Button variant="outline">Cancel</Button>
             </Link>
           </div>
