@@ -16,7 +16,7 @@ export default function DashboardLayout({
     <div className="flex min-h-screen flex-col">
       <MainNav />
       {children}
-      <Footer />
+      {/* <Footer /> */}
     </div>
   );
 }
