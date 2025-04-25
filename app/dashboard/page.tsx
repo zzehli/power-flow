@@ -5,7 +5,7 @@ import { Presentation, Plus, Folder, Clock } from "lucide-react";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Dashboard - PresentAI",
+  title: "Dashboard - Point Flow",
   description: "Manage your AI-generated presentations",
 };
 

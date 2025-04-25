@@ -3,7 +3,7 @@ import { MainNav } from "@/components/navigation/main-nav";
 import { Footer } from "@/components/footer";
 
 export const metadata: Metadata = {
-  title: "Dashboard - PresentAI",
+  title: "Dashboard - Point Flow",
   description: "Manage your AI-generated presentations",
 };
 

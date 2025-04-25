@@ -25,7 +25,7 @@ export function CTA() {
           </h2>
           <p className="mx-auto mt-6 max-w-xl text-lg leading-8 text-blue-100">
             Join thousands of professionals who save time and create stunning
-            presentations with PresentAI.
+            presentations with Point Flow.
           </p>
           <div className="mt-10 flex items-center justify-center gap-x-6">
             <Link href="/auth/signin">

@@ -29,7 +29,7 @@ export default function SignOutPage() {
           <div className="flex justify-center">
             <Link href="/" className="flex items-center space-x-2">
               <Presentation className="h-8 w-8" />
-              <span className="font-bold text-xl">PresentAI</span>
+              <span className="font-bold text-xl">Point Flow</span>
             </Link>
           </div>
           <div className="mt-8 flex flex-col items-center">

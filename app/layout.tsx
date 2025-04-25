@@ -7,7 +7,7 @@ import { Toaster } from '@/components/ui/toaster';
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter' });
 
 export const metadata: Metadata = {
-  title: 'PresentAI - AI-Powered Presentation Generator',
+  title: 'Point Flow - AI-Powered Presentation Generator',
   description: 'Create professional presentations in seconds with the power of AI',
 };
 

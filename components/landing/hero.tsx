@@ -99,7 +99,7 @@ export function Hero() {
                 <div className="w-3 h-3 bg-yellow-500 rounded-full"></div>
                 <div className="w-3 h-3 bg-green-500 rounded-full"></div>
               </div>
-              <div className="mx-auto text-white text-xs">PresentAI Editor</div>
+              <div className="mx-auto text-white text-xs">Point Flow Editor</div>
             </div>
             <div className="h-[400px] bg-gradient-to-br from-gray-800 to-gray-900 flex flex-col justify-center items-center p-6 text-white">
               <div className="w-full grid grid-cols-2 gap-6 h-full">

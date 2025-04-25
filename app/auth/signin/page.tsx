@@ -4,8 +4,8 @@ import { Presentation } from "lucide-react";
 import { SignInForm } from "@/components/auth/signin-form";
 
 export const metadata: Metadata = {
-  title: "Sign In - PresentAI",
-  description: "Sign in to your PresentAI account",
+  title: "Sign In - Point Flow",
+  description: "Sign in to your Point Flow account",
 };
 
 export default function SignInPage() {
@@ -16,7 +16,7 @@ export default function SignInPage() {
           <div className="flex justify-center">
             <Link href="/" className="flex items-center space-x-2">
               <Presentation className="h-8 w-8" />
-              <span className="font-bold text-xl">PresentAI</span>
+              <span className="font-bold text-xl">Point Flow</span>
             </Link>
           </div>
           <h2 className="mt-8 text-center text-2xl font-bold leading-9 tracking-tight">

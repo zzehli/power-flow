@@ -4,7 +4,7 @@ import { Presentation, AlertCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 export const metadata: Metadata = {
-  title: "Authentication Error - PresentAI",
+  title: "Authentication Error - Point Flow",
   description: "There was an error with your authentication",
 };
 
@@ -16,7 +16,7 @@ export default function AuthErrorPage() {
           <div className="flex justify-center">
             <Link href="/" className="flex items-center space-x-2">
               <Presentation className="h-8 w-8" />
-              <span className="font-bold text-xl">PresentAI</span>
+              <span className="font-bold text-xl">Point Flow</span>
             </Link>
           </div>
           <div className="mt-8 flex flex-col items-center">

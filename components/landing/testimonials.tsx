@@ -35,7 +35,7 @@ export function Testimonials() {
   const testimonials = [
     {
       content:
-        "PresentAI saved me countless hours. I was able to create a pitch deck in 20 minutes that would have taken me days to make on my own.",
+        "Point Flow saved me countless hours. I was able to create a pitch deck in 20 minutes that would have taken me days to make on my own.",
       author: {
         name: "Sarah Johnson",
         role: "Marketing Director",
@@ -43,7 +43,7 @@ export function Testimonials() {
     },
     {
       content:
-        "The quality of presentations I can create with PresentAI is far beyond what I could achieve with traditional tools. The AI suggestions are incredibly helpful.",
+        "The quality of presentations I can create with Point Flow is far beyond what I could achieve with traditional tools. The AI suggestions are incredibly helpful.",
       author: {
         name: "Michael Chen",
         role: "Product Manager",

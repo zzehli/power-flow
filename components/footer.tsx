@@ -9,7 +9,7 @@ export function Footer() {
           <div className="space-y-4">
             <div className="flex items-center space-x-2">
               <Presentation className="h-6 w-6" />
-              <span className="font-bold">PresentAI</span>
+              <span className="font-bold">Point Flow</span>
             </div>
             <p className="text-sm text-muted-foreground">
               Create professional presentations in seconds with the power of AI.
@@ -105,7 +105,7 @@ export function Footer() {
         </div>
         <div className="mt-10 border-t pt-6">
           <p className="text-xs text-muted-foreground">
-            &copy; {new Date().getFullYear()} PresentAI. All rights reserved.
+            &copy; {new Date().getFullYear()} Point Flow. All rights reserved.
           </p>
         </div>
       </div>

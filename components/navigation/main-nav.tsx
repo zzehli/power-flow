@@ -53,7 +53,7 @@ export function MainNav() {
         <div className="flex items-center space-x-2">
           <Presentation className="h-6 w-6" />
           <span className="hidden font-bold sm:inline-block">
-            PresentAI
+            Point Flow
           </span>
         </div>
         <nav className="hidden md:flex md:flex-1 md:items-center md:justify-between">
