@@ -12,7 +12,7 @@ export function CTA() {
   });
 
   return (
-    <div className="bg-blue-600" ref={ref}>
+    <div className="bg-background" ref={ref}>
       <motion.div
         className="container mx-auto py-16 md:py-24"
         initial={{ opacity: 0, y: 20 }}
@@ -20,12 +20,12 @@ export function CTA() {
         transition={{ duration: 0.6 }}
       >
         <div className="mx-auto max-w-4xl text-center">
-          <h2 className="text-3xl font-bold tracking-tight text-white sm:text-4xl">
+          <span className="text-3xl font-bold tracking-tight bg-gradient-to-r from-[#ff80b5] to-[#9089fc] bg-clip-text text-transparent sm:text-4xl">
             Ready to transform your presentations?
-          </h2>
+          </span>
           <p className="mx-auto mt-6 max-w-xl text-lg leading-8 text-blue-100">
             Join thousands of professionals who save time and create stunning
-            presentations with Point Flow.
+            presentations with PresentAI.
           </p>
           <div className="mt-10 flex items-center justify-center gap-x-6">
             <Link href="/auth/signin">
