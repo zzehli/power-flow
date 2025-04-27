@@ -7,11 +7,14 @@ export default function WorkspacePage() {
 
   return (
     <div className="flex min-h-screen flex-col min-w-full">
-      <main className="flex flex-row container mx-auto py-10 gap-5">
-        <div className="rounded-t-2xl border border-b-1 border-stone-600 bg-transparent">
+      <main className="mx-auto py-10">
+        <div className="border border-b-1 border-stone-600 bg-transparent mb-7">
+          <Slide input={input} setInput={setInput} />
+        </div>
+        <div className="border border-b-1 border-stone-600 bg-transparent">
           <Editor
-            height="80vh"
-            width="40vw"
+            height="500px"
+            width="960px"
             defaultLanguage="markdown"
             theme="vs-dark"
             value={input}
@@ -19,9 +22,7 @@ export default function WorkspacePage() {
           />
         </div>
 
-        <div className="rounded-t-2xl border border-b-1 border-stone-600 bg-transparent w-1/2">
-          <Slide input={input} setInput={setInput} />
-        </div>
+
       </main>
     </div>
   )

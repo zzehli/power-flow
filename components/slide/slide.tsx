@@ -45,9 +45,9 @@ You can convert into PDF slide deck through Chrome.
 
 `
     marpit.themeSet.default = marpit.themeSet.add(theme)
-    const { html, css } = marpit.render(markdown)
+    const { html, css } = marpit.render(input)
     return (
-        <div>
+        <div className="w-[960px] h-[720px] overflow-scroll">
             <style>{css}</style>
             {html ? (
                 <div

@@ -257,6 +257,8 @@ table td {
 }
 
 section {
+    width: 960px;
+    height: 720px;
     font-size: 35px;
     font-family: "IBM Plex Sans";
     line-height: 1.35;
