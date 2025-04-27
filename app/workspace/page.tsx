@@ -1,7 +1,7 @@
 "use client"
 import { useState } from "react";
 import Editor from "@monaco-editor/react";
-import { Slide } from "@/components/reveal/slide";
+import { Slide } from "@/components/slide/slide";
 export default function WorkspacePage() {
   const [input, setInput] = useState<string>("");
 
