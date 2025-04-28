@@ -14,7 +14,6 @@ export function Slide({ input, setInput }: SlideProps) {
     });
     marpit.themeSet.default = marpit.themeSet.add(theme)
     const { html, css, comments } = marpit.render(input)
-    console.log("html", html)
     return (
         <div className="w-[960px] h-[720px] overflow-scroll">
             <style>
