@@ -29,30 +29,44 @@ export default function WorkspacePage() {
     }
   };
   return (
-    <div className="flex min-h-screen flex-col min-w-full">
+    <div className="flex min-h-screen max-h-screen flex-col min-w-full">
       <main className="mx-auto py-10">
-        <div className="grid max-w-sm w-full gap-2 mx-auto mb-5">
-          <Textarea
-            placeholder="Type your ides here."
-            className="bg-gray-700 border-gray-600 placeholder-gray-400 text-white focus:ring-primary focus:border-primary"
-            value={chatInput}
-            onChange={(e) => setChatInput(e.target.value)}
-          />
-          <Button onClick={handleSubmit}>Start generate</Button>
+
+        <div className="flex gap-7 max-h-[750px]">
+          <div className="min-w-xs w-[400px] md:w-96 max-h-[750px] flex flex-col">
+            <div className="grid gap-2 mx-auto mb-5 w-80 p-5">
+              <Textarea
+                placeholder="Type your ides here."
+                className="bg-gray-700 border-gray-600 placeholder-gray-400 text-white focus:ring-primary focus:border-primary"
+                value={chatInput}
+                onChange={(e) => setChatInput(e.target.value)}
+              />
+              <Button onClick={handleSubmit}>Start generate</Button>
+            </div>
+            <div className="border border-b-1 border-stone-600 bg-transparent min-w-xs flex-grow">
+              <Editor
+                height="100%"
+                width="100%"
+                defaultLanguage="markdown"
+                theme="vs-dark"
+                value={input}
+                onChange={(value) => setInput(value || "")}
+                options={{
+                  minimap: {
+                    enabled: false,
+                  },
+                }}
+              />
+            </div>
+
+          </div>
+          <div className="border border-b-1 border-stone-600 bg-transparent p-2">
+            <Slide input={input} setInput={setInput} />
+          </div>
+
+
         </div>
-        <div className="border border-b-1 border-stone-600 bg-transparent mb-7">
-          <Slide input={input} setInput={setInput} />
-        </div>
-        <div className="border border-b-1 border-stone-600 bg-transparent">
-          <Editor
-            height="500px"
-            width="960px"
-            defaultLanguage="markdown"
-            theme="vs-dark"
-            value={input}
-            onChange={(value) => setInput(value || "")}
-          />
-        </div>
+
 
 
       </main>
