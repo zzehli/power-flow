@@ -4,8 +4,6 @@ import Editor from "@monaco-editor/react";
 import { Slide } from "@/components/slide/slide";
 import { Button } from "@/components/ui/button"
 import { Textarea } from "@/components/ui/textarea"
-import { POST } from "@/app/api/ai/route";
-import Form from "next/form";
 
 export default function WorkspacePage() {
   const [input, setInput] = useState<string>("");
@@ -55,6 +53,8 @@ export default function WorkspacePage() {
                   minimap: {
                     enabled: false,
                   },
+                  renderLineHighlight: "all",
+                  renderLineHighlightOnlyWhenFocus: true
                 }}
               />
             </div>
