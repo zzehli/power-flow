@@ -139,6 +139,11 @@ h6 strong {
 
 h1 {
     font-size: 2.5em;
+    text-align: center;
+}
+
+h1+h2 {
+    text-align: center;
 }
 
 h2 {
@@ -167,6 +172,17 @@ blockquote {
     text-align: left
 }
 
+ul {
+    list-style-type: disc;
+    list-style-position: inside;
+}
+
+ol {
+    list-style-type: decimal;
+    list-style-position: inside;
+}
+
+
 ul>li,
 ol>li {
     margin: 0.3em 0 0 0;
@@ -187,6 +203,7 @@ code {
     padding: 0.1em 0.2em;
     vertical-align: baseline;
     color: var(--dracula-green);
+    overflow: scroll;
 }
 
 pre {
@@ -201,7 +218,7 @@ pre code {
     margin: 0;
     min-width: 100%;
     padding: 0.5em;
-    font-size: 0.7em;
+    font-size: 15px;
 }
 
 pre code svg[data-marp-fitting=svg] {
@@ -264,7 +281,7 @@ section {
     font-family: "IBM Plex Sans";
     line-height: 1.35;
     letter-spacing: 1.25px;
-    padding: 70px;
+    padding: 50px;
     color: var(--dracula-foreground);
     background-color: var(--dracula-background);
 }
@@ -349,4 +366,12 @@ section::after {
     right: 0;
     bottom: 0;
     font-size: 80%;
+}
+
+img.emoji {
+    display: inline-block;
+}
+
+mjx-container {
+    display: inline-block;
 }
