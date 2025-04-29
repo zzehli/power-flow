@@ -6,9 +6,37 @@ import { Button } from "@/components/ui/button"
 import { Textarea } from "@/components/ui/textarea"
 
 export default function WorkspacePage() {
-  const [input, setInput] = useState<string>("");
+  const greeting = `### Ready to Impress?\n\nNow you can turn simple markdown text into beautiful, interactive presentations. Let’s get started! :rocket:`
+
+  const [input, setInput] = useState<string>(greeting);
   const [chatInput, setChatInput] = useState<string>("");
+  const [slideContent, setSlideContent] = useState({ html: '', css: '' });
+  const [isError, setIsError] = useState(false);
+  const handleOpenNewWindow = () => {
+    const newWindow = window.open("", "_blank");
+    if (newWindow) {
+      const doc = newWindow.document;
+
+      // Create and populate the HTML structure
+      const html = doc.createElement("html");
+      const head = doc.createElement("head");
+      const body = doc.createElement("body");
+      const style = doc.createElement("style");
+      style.textContent = slideContent.css;
+      head.appendChild(style);
+
+      // Add content
+      body.innerHTML = slideContent.html;
+
+      html.appendChild(head);
+      html.appendChild(body);
+
+      // Replace the document's content
+      doc.replaceChild(html, doc.documentElement);
+    }
+  };
   const handleSubmit = async () => {
+    setIsError(false);
     console.log("chatInput", chatInput);
     try {
       const response = await fetch("/api/ai", {
@@ -24,23 +52,28 @@ export default function WorkspacePage() {
       console.log("Response from postChat:", data);
     } catch (error) {
       console.error("Error submitting to postChat:", error);
+      setIsError(true);
     }
   };
   return (
     <div className="flex min-h-screen max-h-screen flex-col min-w-full">
       <main className="mx-auto py-10">
 
-        <div className="flex gap-7 max-h-[750px]">
-          <div className="min-w-xs w-[400px] md:w-96 max-h-[750px] flex flex-col">
-            <div className="grid gap-2 mx-auto mb-5 w-80 p-5">
+        <div className="flex gap-7 max-h-[860px]">
+          <div className="min-w-xs w-[400px] md:w-96 max-h-[860px] flex flex-col">
+            <div className="grid gap-2 mb-5 w-80">
               <Textarea
-                placeholder="Type your ides here."
+                placeholder="Type your ides here"
                 className="bg-gray-700 border-gray-600 placeholder-gray-400 text-white focus:ring-primary focus:border-primary"
                 value={chatInput}
-                onChange={(e) => setChatInput(e.target.value)}
+                onChange={(e) => { setIsError(false); setChatInput(e.target.value) }}
               />
               <Button onClick={handleSubmit}>Start generate</Button>
+              {isError &&
+                <p className="text-red-500 text-sm"> Something went wrong. Please try again.</p>
+              }
             </div>
+            <div className="text-sm text-gray-400 mb-2">Edit the slides with Markdown:</div>
             <div className="border border-b-1 border-stone-600 bg-transparent min-w-xs flex-grow">
               <Editor
                 height="100%"
@@ -60,11 +93,14 @@ export default function WorkspacePage() {
             </div>
 
           </div>
-          <div className="border border-b-1 border-stone-600 bg-transparent p-2">
-            <Slide input={input} setInput={setInput} />
+          <div className="flex flex-col gap-2">
+            <div className="text-right">
+              <Button onClick={handleOpenNewWindow} variant={"secondary"}>Save Slides</Button>
+            </div>
+            <div className="border border-b-1 border-stone-600 bg-transparent p-2">
+              <Slide input={input} setInput={setInput} content={slideContent} setContent={setSlideContent} />
+            </div>
           </div>
-
-
         </div>
 
 

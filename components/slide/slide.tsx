@@ -6,29 +6,34 @@ import { useEffect, useState } from "react";
 interface SlideProps {
     input: string;
     setInput: (value: string) => void;
+    content: { html: string; css: string };
+    setContent: (value: { html: string; css: string }) => void;
 }
 
-export function Slide({ input, setInput }: SlideProps) {
-    const [content, setContent] = useState({ html: '', css: '' });
+export function Slide({ input, setInput, content, setContent }: SlideProps) {
+    const [isError, setIsError] = useState(false);
+
+    const marpitHeader = `---
+paginate: true
+---\n\n`
     useEffect(() => {
 
         const marpit = new (Marpit as any)({
             markdown: {
-                // html: true, // Enable HTML tags
+                linkify: true, // Autoconvert URL-like text to links
             },
         });
         marpit.themeSet.default = marpit.themeSet.add(theme);
-        const { html, css, comments } = marpit.render(input);
-        setContent({ html, css });
+        try {
+            const { html, css, comments } = marpit.render(marpitHeader + input);
+            setContent({ html, css });
+        } catch (error) {
+            console.error("Error rendering markdown:", error);
+            setContent({ html: '', css: '' });
+            setIsError(true);
+        }
     }, [input]);
-
-    const htmlFile = `
-<!DOCTYPE html>
-<html><body>
-  <style>${content.css}</style>
-  ${content.html}
-</body></html>
-`
+    console.log("content", content.html);
 
     return (
         <div className="w-[960px] h-[720px] overflow-scroll">
@@ -48,9 +53,12 @@ export function Slide({ input, setInput }: SlideProps) {
                         __html: content.html,
                     }}
                 />
-            ) : (
-                <div>Loading...</div>
-            )}
+            ) : isError ? (
+                <div>Error rendering content. Please try again.</div>
+            ) :
+                (
+                    <div>Loading...</div>
+                )}
         </div>
     )
 }
