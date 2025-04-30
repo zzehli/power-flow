@@ -33,6 +33,7 @@ export default function WorkspacePage() {
 
       // Replace the document's content
       doc.replaceChild(html, doc.documentElement);
+      newWindow.print()
     }
   };
   const handleSubmit = async () => {
@@ -73,7 +74,7 @@ export default function WorkspacePage() {
                 <p className="text-red-500 text-sm"> Something went wrong. Please try again.</p>
               }
             </div>
-            <div className="text-sm text-gray-400 mb-2">Edit the slides with Markdown:</div>
+            <div className="text-sm font-semibold text-gray-400 mb-2">Edit the slides with Markdown:</div>
             <div className="border border-b-1 border-stone-600 bg-transparent min-w-xs flex-grow">
               <Editor
                 height="100%"
@@ -93,9 +94,11 @@ export default function WorkspacePage() {
             </div>
 
           </div>
-          <div className="flex flex-col gap-2">
+          <div className="flex flex-col gap-2 justify-center">
             <div className="text-right">
-              <Button onClick={handleOpenNewWindow} variant={"secondary"}>Save Slides</Button>
+              <Button onClick={handleOpenNewWindow} variant={"secondary"}>Print Slides</Button>
+              <div className="text-sm font-semibold text-gray-400 mb-2">For best typesetting results, use chromium browsers.</div>
+
             </div>
             <div className="border border-b-1 border-stone-600 bg-transparent p-2">
               <Slide input={input} setInput={setInput} content={slideContent} setContent={setSlideContent} />

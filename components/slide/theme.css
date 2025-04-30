@@ -203,7 +203,7 @@ code {
     padding: 0.1em 0.2em;
     vertical-align: baseline;
     color: var(--dracula-green);
-    overflow: scroll;
+    /* overflow: hidden; */
 }
 
 pre {
@@ -218,7 +218,7 @@ pre code {
     margin: 0;
     min-width: 100%;
     padding: 0.5em;
-    font-size: 15px;
+    font-size: 20px;
 }
 
 pre code svg[data-marp-fitting=svg] {
@@ -275,7 +275,7 @@ table td {
 }
 
 section {
-    width: 960px;
+    width: 1280px;
     height: 720px;
     font-size: 35px;
     font-family: "IBM Plex Sans";

@@ -27,17 +27,7 @@ export function MainNav() {
       href: "/",
       label: "Home",
       active: pathname === "/",
-    },
-    {
-      href: "/features",
-      label: "Features",
-      active: pathname === "/features",
-    },
-    {
-      href: "/pricing",
-      label: "Pricing",
-      active: pathname === "/pricing",
-    },
+    }
   ];
 
   return (
@@ -50,7 +40,11 @@ export function MainNav() {
           </Button>
         </div>
         <div className="flex items-center space-x-2">
-          <Presentation className="h-6 w-6" />
+          <img
+            src="/images/presentation-emoji-1583836-1344298.png"
+            alt="Point Flow icon"
+            className="h-6 w-6"
+          />
           <span className="hidden font-bold sm:inline-block">
             Point Flow
           </span>
@@ -81,9 +75,6 @@ export function MainNav() {
                   <Button variant="ghost" size="sm">
                     Sign In
                   </Button>
-                </Link>
-                <Link href="/auth/signin">
-                  <Button size="sm">Get Started</Button>
                 </Link>
               </>
             )}

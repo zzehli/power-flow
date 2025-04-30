@@ -13,9 +13,7 @@ interface SlideProps {
 export function Slide({ input, setInput, content, setContent }: SlideProps) {
     const [isError, setIsError] = useState(false);
 
-    const marpitHeader = `---
-paginate: true
----\n\n`
+    const marpitHeader = `---\npaginate: true\n---\n\n`
     useEffect(() => {
 
         const marpit = new (Marpit as any)({
@@ -36,7 +34,7 @@ paginate: true
     console.log("content", content.html);
 
     return (
-        <div className="w-[960px] h-[720px] overflow-scroll">
+        <div className="w-[960px] h-[545px] overflow-y-scroll my-auto">
             <style>
                 {content.css}
                 {`
