@@ -68,7 +68,7 @@ export function Hero() {
             variants={itemVariants}
           >
             <Link href="/auth/signin">
-              <Button size="lg" className="rounded-full px-8">
+              <Button size="lg" className="rounded-full px-8" variant={"default"}>
                 Get started
               </Button>
             </Link>

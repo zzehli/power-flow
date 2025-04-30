@@ -9,6 +9,9 @@ const inter = Inter({ subsets: ['latin'], variable: '--font-inter' });
 export const metadata: Metadata = {
   title: 'Point Flow - AI-Powered Presentation Generator',
   description: 'Create professional presentations in seconds with the power of AI',
+  icons: {
+    icon: '/images/presentation-emoji-1583836-1344298.png',
+  },
 };
 
 export default function RootLayout({
