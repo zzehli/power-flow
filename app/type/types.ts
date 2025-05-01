@@ -2,6 +2,7 @@ import type { ToolDefinition } from '@azure/ai-projects';
 import type { FileSearchToolDefinition } from "@azure/ai-projects";
 
 export interface PromptConfig {
+    name: string;
     prompt: string;
     instructions?: string;
     emoji?: string;
