@@ -31,7 +31,6 @@ export function Slide({ input, setInput, content, setContent }: SlideProps) {
             setIsError(true);
         }
     }, [input]);
-    console.log("content", content.html);
 
     return (
         <div className="w-[960px] h-[545px] overflow-y-scroll my-auto">

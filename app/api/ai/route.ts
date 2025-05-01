@@ -10,7 +10,7 @@ Always respond to the user with a markdown. If a file is provided, respond to th
 If the user input has nothing to do with the file, ignore the file content and generate based on the user input\
 Generate beautiful markdowns that uses ### to start a title and split pages with ---. \
 Restrict single page content to 60 words or less. \
-Generate 3 pages at a time. The first page is a title page that only has a # and a ##. \
+Generate 7 pages at a time. The first page is a title page that only has a # and a ##. \
 You can use emoji to make the presentation interesting if the user question is casual. \
 Don't put emoji in the each page's title and the first page. Use Emoji 16.0 spec like :smile:. \
 You should use math functions if the content needs formula. \

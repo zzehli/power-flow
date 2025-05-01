@@ -67,13 +67,13 @@ export function Hero() {
             className="mt-10 flex items-center justify-center gap-x-6"
             variants={itemVariants}
           >
-            <Link href="/auth/signin">
+            <Link href="/workspace">
               <Button size="lg" className="rounded-full px-8" variant={"default"}>
                 Get started
               </Button>
             </Link>
             <Link
-              href="/features"
+              href="/workspace"
               className="text-sm font-semibold leading-6 text-muted-foreground hover:text-foreground"
             >
               Learn more <span aria-hidden="true">→</span>

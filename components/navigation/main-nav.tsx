@@ -32,7 +32,7 @@ export function MainNav() {
 
   return (
     <header className="sticky top-0 z-40 w-full border-b backdrop-blur supports-[backdrop-filter]:bg-stone-900/60">
-      <div className="container mx-auto flex h-14 items-center">
+      <div className="container px-7 mx-auto flex h-14 items-center">
         <div className="mr-4 flex items-center md:hidden">
           <Button variant="ghost" size="icon" onClick={toggleMenu}>
             <Menu className="h-5 w-5" />
@@ -63,21 +63,6 @@ export function MainNav() {
                 {route.label}
               </Link>
             ))}
-          </div>
-          <div className="flex items-center space-x-2">
-            {session ? (
-              <>
-                <UserNav />
-              </>
-            ) : (
-              <>
-                <Link href="/auth/signin">
-                  <Button variant="ghost" size="sm">
-                    Sign In
-                  </Button>
-                </Link>
-              </>
-            )}
           </div>
         </nav>
 
