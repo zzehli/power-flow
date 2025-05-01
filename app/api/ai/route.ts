@@ -1,10 +1,11 @@
 import { AIProjectsClient, ToolUtility, isOutputOfType } from "@azure/ai-projects";
-import * as fs from 'fs';
 import type { PromptConfig } from "@/app/type/types"
 import { DefaultAzureCredential } from "@azure/identity";
 import type {
     MessageTextContentOutput, OpenAIFileOutput, VectorStoreOutput
 } from "@azure/ai-projects";
+import { Readable } from "stream";
+
 const systemPrompt = "You are a revealjs/slidev/marp markdown slide generator. \
 Always respond to the user with a markdown. If a file is provided, respond to the user input that include information in the file, but no need to cite your sources\
 If the user input has nothing to do with the file, ignore the file content and generate based on the user input\
@@ -15,6 +16,10 @@ You can use emoji to make the presentation interesting if the user question is c
 Don't put emoji in the each page's title and the first page. Use Emoji 16.0 spec like :smile:. \
 You should use math functions if the content needs formula. \
 Use $...$ to render math as inline, and $$...$$ to render as block. Don't use numbered list. Don't end the last page with ---. Don't wrap the whole output around ```"
+
+// const app = express();
+// const storage = multer.memoryStorage();
+// const upload = multer({ storage });
 
 export async function POST(req: Request) {
     const formData = await req.formData();
@@ -44,7 +49,8 @@ export async function POST(req: Request) {
             );
         }
         if (file.size <= maxSizeInBytes) {
-            localFileStream = file.stream();
+            const arrayBuffer = await file.arrayBuffer();
+            localFileStream = Readable.from(Buffer.from(arrayBuffer));
         } else {
             return new Response(
                 JSON.stringify({ error: "File upload exceeds 3mb." }),
@@ -60,6 +66,7 @@ export async function POST(req: Request) {
             connectionString,
             new DefaultAzureCredential(),
         );
+
         let promptConfig: PromptConfig = {
             name: "Markdown Generation Agent",
             prompt: input,
@@ -69,6 +76,7 @@ export async function POST(req: Request) {
             azureFile = await client.agents.uploadFile(localFileStream, "assistants", {
                 fileName: "user_file.txt",
             });
+
             vectorStore = await client.agents.createVectorStore({
                 fileIds: [azureFile.id],
                 name: "ms_hack_vector_store",
