@@ -42,9 +42,7 @@ export function UploadDialog(props: UploadDialogProps) {
 
     const handleSubmit = async (event: React.FormEvent<HTMLButtonElement>) => {
         event.preventDefault();
-        setRequestIsLoading(true);
-        setOpen(false)
-
+        console.log('here ')
         if (!props.chatInput.trim()) {
             setInputError("Please enter your question.")
             return
@@ -54,11 +52,14 @@ export function UploadDialog(props: UploadDialogProps) {
             setInputError(`Question must be less than ${MAX_QUESTION_LENGTH} characters.`)
             return
         }
+
         const formData = new FormData();
         formData.append('input', props.chatInput);
         if (file) {
             formData.append('file', file);
         }
+        setOpen(false)
+        setRequestIsLoading(true);
 
         try {
             const response = await fetch("/api/ai", {
@@ -70,6 +71,7 @@ export function UploadDialog(props: UploadDialogProps) {
             props.setInput(data.message); // Set the response message to the input state
         } catch (error) {
             props.setIsError(true);
+            console.error("Error:", error);
         } finally {
             setRequestIsLoading(false);
             setInputError("");
