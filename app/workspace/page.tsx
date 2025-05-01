@@ -71,7 +71,7 @@ export default function WorkspacePage() {
               />
               <Button onClick={handleSubmit}>Start generate</Button>
               {isError &&
-                <p className="text-red-500 text-sm"> Something went wrong. Please try again.</p>
+                <p className="text-red-500 text-sm">Something went wrong. Please try again.</p>
               }
             </div>
             <div className="text-sm font-semibold text-gray-400 mb-2">Edit the slides with Markdown:</div>
