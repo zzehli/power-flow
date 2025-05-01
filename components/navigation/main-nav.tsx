@@ -6,13 +6,10 @@ import { Presentation, Menu } from "lucide-react";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-import { UserNav } from "@/components/navigation/user-nav";
-import { useSession } from "next-auth/react";
 
 export function MainNav() {
   const pathname = usePathname();
   const [isOpen, setIsOpen] = useState(false);
-  const { data: session } = useSession();
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
@@ -65,17 +62,6 @@ export function MainNav() {
             ))}
           </div>
         </nav>
-
-        {/* Mobile Menu */}
-        <div className="flex flex-1 items-center justify-end space-x-2 md:hidden">
-          {session ? (
-            <UserNav />
-          ) : (
-            <Link href="/auth/signin">
-              <Button size="sm">Sign In</Button>
-            </Link>
-          )}
-        </div>
 
         {/* Mobile Menu Dropdown */}
         {isOpen && (
