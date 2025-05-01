@@ -3,9 +3,7 @@ import { useState } from "react";
 import Editor from "@monaco-editor/react";
 import { Slide } from "@/components/slide/slide";
 import { Button } from "@/components/ui/button"
-
-import { Dispatch, SetStateAction, useRef } from 'react';
-import { UploadDialog } from "@/components/upload-dialog";
+import { UploadDialog } from "@/app/workspace/upload-dialog";
 
 export default function WorkspacePage() {
   const greeting = `### Ready to Impress?\n\nNow you can turn simple markdown text into beautiful, interactive presentations. Let’s get started! :rocket:`
@@ -78,7 +76,7 @@ export default function WorkspacePage() {
           </div>
           <div className="flex flex-col gap-2 justify-center">
             <div className="text-right">
-              <Button onClick={handleOpenNewWindow} variant={"secondary"}>Print Slides</Button>
+              <Button onClick={handleOpenNewWindow} variant={"outline"}>Print Slides</Button>
               <div className="text-sm font-semibold text-gray-400 mb-2">For best typesetting results, use chromium browsers.</div>
 
             </div>
