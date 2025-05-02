@@ -9,18 +9,23 @@ import {
     DialogHeader,
     DialogTitle,
     DialogTrigger,
+    DialogClose,
 } from "@/components/ui/dialog"
 import { Textarea } from "@/components/ui/textarea"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Dispatch, SetStateAction, useRef } from 'react';
 import { LoadingButton } from '@/components/ui/loading-button';
+import { X } from 'lucide-react';
+
 interface UploadDialogProps {
     chatInput: string;
     setChatInput: Dispatch<SetStateAction<string>>
     setIsError: Dispatch<SetStateAction<boolean>>
     setInput: Dispatch<SetStateAction<string>>
 }
+const ALLOWED_FILE_TYPES = ["text/plain", "text/markdown"]
+
 
 export function UploadDialog(props: UploadDialogProps) {
     const [isRequestLoading, setRequestIsLoading] = useState(false);
@@ -28,7 +33,7 @@ export function UploadDialog(props: UploadDialogProps) {
     const [file, setFile] = useState<File | null>(null);
     const [open, setOpen] = useState(false)
 
-    const fileInputRef = useRef(null);
+    const fileInputRef = useRef<HTMLInputElement>(null);
     const MAX_QUESTION_LENGTH = 300
 
     // File change handler
@@ -42,7 +47,6 @@ export function UploadDialog(props: UploadDialogProps) {
 
     const handleSubmit = async (event: React.FormEvent<HTMLButtonElement>) => {
         event.preventDefault();
-        console.log('here ')
         if (!props.chatInput.trim()) {
             setInputError("Please enter your question.")
             return
@@ -56,6 +60,14 @@ export function UploadDialog(props: UploadDialogProps) {
         const formData = new FormData();
         formData.append('input', props.chatInput);
         if (file) {
+
+            const fileExtension = file.name.split(".").pop()?.toLowerCase()
+            if (!ALLOWED_FILE_TYPES.includes(file.type) && !(fileExtension === "md" || fileExtension === "txt")) {
+                setInputError("Please upload only .txt or .md files")
+                setFile(null)
+                if (fileInputRef.current) fileInputRef.current.value = ""
+                return
+            }
             formData.append('file', file);
         }
         setOpen(false)
@@ -82,16 +94,22 @@ export function UploadDialog(props: UploadDialogProps) {
             }
         }
     };
+
+    const handleCloseDialog = (event: React.MouseEvent) => {
+        event.preventDefault();
+        setOpen(false);
+    }
+
     return (
-        <Dialog open={open} onOpenChange={setOpen}>
+        <Dialog open={open} onOpenChange={() => { setOpen; setInputError("") }}>
             <DialogTrigger asChild>
-                <LoadingButton variant="default" disabled={isRequestLoading} loading={isRequestLoading}>Start Here</LoadingButton>
+                <LoadingButton variant="default" onClick={() => setOpen(true)} disabled={isRequestLoading} loading={isRequestLoading}>Start Here</LoadingButton>
             </DialogTrigger>
             <DialogContent className="sm:max-w-[425px]">
                 <DialogHeader>
                     <DialogTitle>Enter request</DialogTitle>
                     <DialogDescription>
-                        Write your ideas here. Optionally upload a related text file that you want to be included in the presentation.
+                        Write your ideas here. Optionally upload a related text file and describe how it should be included in the presentation.
                     </DialogDescription>
                 </DialogHeader>
                 <div className="grid gap-4 py-4">
@@ -111,9 +129,6 @@ export function UploadDialog(props: UploadDialogProps) {
                             value={props.chatInput}
                             onChange={(e) => { props.setIsError(false); props.setChatInput(e.target.value) }}
                         />
-                        {inputError &&
-                            <p className="text-red-500 text-sm">{inputError}</p>
-                        }
                     </div>
                     <div className="space-y-2">
                         <Label htmlFor="file" className="text-right">File Upload</Label>
@@ -124,10 +139,17 @@ export function UploadDialog(props: UploadDialogProps) {
                             ref={fileInputRef}
                             className="col-span-3" />
                     </div>
+                    {inputError &&
+                        <p className="text-red-500 text-sm">Input Error: {inputError}</p>
+                    }
                 </div>
                 <DialogFooter>
                     <Button type="submit" onClick={handleSubmit}>Generate</Button>
                 </DialogFooter>
+                <DialogClose onClick={handleCloseDialog} className="absolute right-4 top-4 rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:pointer-events-none data-[state=open]:bg-accent data-[state=open]:text-muted-foreground">
+                    <X className="h-4 w-4" />
+                    <span className="sr-only">Close</span>
+                </DialogClose>
             </DialogContent>
         </Dialog>
     )
