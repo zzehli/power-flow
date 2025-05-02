@@ -11,11 +11,7 @@ export default function Home() {
       <MainNav />
       <main className="flex-1">
         <Hero />
-        <Features />
-        <Testimonials />
-        <CTA />
       </main>
-      <Footer />
     </div>
   );
 }
