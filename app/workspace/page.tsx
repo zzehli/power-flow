@@ -3,15 +3,15 @@ import { useState } from "react";
 import Editor from "@monaco-editor/react";
 import { Slide } from "@/components/slide/slide";
 import { Button } from "@/components/ui/button"
-import { UploadDialog } from "@/app/workspace/upload-dialog";
+import { useChatContext } from "@/contexts/chatContext";
 
 export default function WorkspacePage() {
-  const greeting = `### Ready to Impress?\n\nNow you can turn simple markdown text into beautiful, interactive presentations. Let’s get started! :rocket:`
+  // const greeting = `### Ready to Impress?\n\nNow you can turn simple markdown text into beautiful, interactive presentations. Let’s get started! :rocket:`
 
-  const [input, setInput] = useState<string>(greeting);
-  const [chatInput, setChatInput] = useState<string>("");
   const [slideContent, setSlideContent] = useState({ html: '', css: '' });
-  const [isError, setIsError] = useState(false);
+
+  const { isError, input, setInput } = useChatContext();
+  console.log("slide content ", input)
   const handleOpenNewWindow = () => {
     const newWindow = window.open("", "_blank");
     if (newWindow) {
@@ -41,7 +41,7 @@ export default function WorkspacePage() {
     <div className="flex min-h-screen max-h-screen flex-col min-w-full">
       <main className="mx-auto py-10">
         <div className="py-5 space-y-2">
-          <UploadDialog chatInput={chatInput} setChatInput={setChatInput} setIsError={setIsError} setInput={setInput} />
+          {/* <UploadDialog chatInput={chatInput} setChatInput={setChatInput} setIsError={setIsError} setInput={setInput} /> */}
           {isError &&
             <p className="text-red-500 text-sm">Something went wrong. Please try again.</p>
           }
@@ -81,7 +81,7 @@ export default function WorkspacePage() {
 
             </div>
             <div className="border border-b-1 border-stone-600 bg-transparent p-2">
-              <Slide input={input} setInput={setInput} content={slideContent} setContent={setSlideContent} />
+              <Slide input={input} content={slideContent} setContent={setSlideContent} />
             </div>
           </div>
         </div>

@@ -5,12 +5,11 @@ import { Marp as Marpit } from '@marp-team/marp-core'
 import { useEffect, useState } from "react";
 interface SlideProps {
     input: string;
-    setInput: (value: string) => void;
     content: { html: string; css: string };
     setContent: (value: { html: string; css: string }) => void;
 }
 
-export function Slide({ input, setInput, content, setContent }: SlideProps) {
+export function Slide({ input, content, setContent }: SlideProps) {
     const [isError, setIsError] = useState(false);
 
     const marpitHeader = `---\npaginate: true\n---\n\n`

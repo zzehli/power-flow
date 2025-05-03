@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
 import Link from "next/link";
 import { useInView } from "react-intersection-observer";
-import { ChatBox } from "@/components/landing/chat";
+import { ChatBox } from "@/components/chat";
 import { SetStateAction } from "react";
 export function Hero() {
   const [ref, inView] = useInView({
@@ -65,11 +65,7 @@ export function Hero() {
           </motion.p>
         </motion.div>
 
-        <ChatBox setIsError={function (value: SetStateAction<boolean>): void {
-
-        }} setInput={function (value: SetStateAction<string>): void {
-
-        }} />
+        <ChatBox />
       </div>
 
       {/* Bottom background gradient */}
