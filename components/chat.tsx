@@ -8,6 +8,9 @@ import { useRef } from 'react';
 import { useChatContext } from "@/contexts/chatContext";
 import { useRouter } from 'next/navigation'
 import { LoadingButton } from '@/components/ui/loading-button';
+import { useToast } from "@/hooks/use-toast"
+
+
 const ALLOWED_FILE_TYPES = ["text/plain", "text/markdown"]
 
 export function ChatBox() {
@@ -15,6 +18,7 @@ export function ChatBox() {
     const [file, setFile] = useState<File | null>(null);
     const [inputError, setInputError] = useState("");
     const router = useRouter()
+    const { dismiss } = useToast()
 
     const fileInputRef = useRef<HTMLInputElement>(null);
     const MAX_QUESTION_LENGTH = 300
@@ -67,13 +71,18 @@ export function ChatBox() {
                 }); // Submit the input to postChat
 
                 const data = await response.json();
-                console.log("data response ", data)
+
+                // Remove all 【】 and any content inside them
+                const cleanedMessage = data.message.replace(/【[^】]*】/g, '');
+                setInput(cleanedMessage); // Set the cleaned response
                 setInput(data.message); // Set the response message to editor
             } catch (error) {
                 setIsError(true);
                 console.error("Error:", error);
             } finally {
-                setRequestIsLoading(false);
+                setRequestIsLoading(false)
+                console.log("dismissing")
+                dismiss()
                 setInputError("");
                 setChatInput('');
                 setFile(null);

@@ -15,7 +15,7 @@ Generate 7 pages at a time. The first page is a title page that only has a # and
 You can use emoji to make the presentation interesting if the user question is casual. \
 Don't put emoji in the each page's title and the first page. Use Emoji 16.0 spec like :smile:. \
 You should use math functions if the content needs formula. \
-Use $...$ to render math as inline, and $$...$$ to render as block. Don't use numbered list. Don't include source when you gather information from a file. Don't end the last page with ---. Don't wrap the whole output around ```"
+Use $...$ to render math as inline, and $$...$$ to render as block. Don't use numbered list. Don't include citations when you generate. Don't end the last page with ---. Don't wrap the whole output around ```"
 
 // const app = express();
 // const storage = multer.memoryStorage();

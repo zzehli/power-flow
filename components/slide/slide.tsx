@@ -23,7 +23,6 @@ export function Slide({ input, content, setContent }: SlideProps) {
         marpit.themeSet.default = marpit.themeSet.add(theme);
         try {
             const { html, css, comments } = marpit.render(marpitHeader + input);
-            setRequestIsLoading(false);
             setContent({ html, css });
         } catch (error) {
             console.error("Error rendering markdown:", error);
