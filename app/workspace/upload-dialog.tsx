@@ -85,13 +85,13 @@ export function UploadDialog(props: UploadDialogProps) {
             props.setIsError(true);
             console.error("Error:", error);
         } finally {
-            setRequestIsLoading(false);
             setInputError("");
             props.setChatInput('');
             setFile(null);
             if (fileInputRef.current) {
                 (fileInputRef.current as HTMLInputElement).value = '';
             }
+            // setRequestIsLoading(false);
         }
     };
 

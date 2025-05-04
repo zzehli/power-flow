@@ -8,10 +8,10 @@ interface SlideProps {
     content: { html: string; css: string };
     setContent: (value: { html: string; css: string }) => void;
 }
-
+import { useChatContext } from "@/contexts/chatContext";
 export function Slide({ input, content, setContent }: SlideProps) {
     const [isError, setIsError] = useState(false);
-
+    const { setRequestIsLoading } = useChatContext();
     const marpitHeader = `---\npaginate: true\n---\n\n`
     useEffect(() => {
 
@@ -23,6 +23,7 @@ export function Slide({ input, content, setContent }: SlideProps) {
         marpit.themeSet.default = marpit.themeSet.add(theme);
         try {
             const { html, css, comments } = marpit.render(marpitHeader + input);
+            setRequestIsLoading(false);
             setContent({ html, css });
         } catch (error) {
             console.error("Error rendering markdown:", error);

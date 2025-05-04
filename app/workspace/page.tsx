@@ -1,17 +1,16 @@
 "use client"
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Editor from "@monaco-editor/react";
 import { Slide } from "@/components/slide/slide";
 import { Button } from "@/components/ui/button"
 import { useChatContext } from "@/contexts/chatContext";
-
+import { useToast } from "@/hooks/use-toast";
 export default function WorkspacePage() {
   // const greeting = `### Ready to Impress?\n\nNow you can turn simple markdown text into beautiful, interactive presentations. Let’s get started! :rocket:`
 
   const [slideContent, setSlideContent] = useState({ html: '', css: '' });
-
-  const { isError, input, setInput } = useChatContext();
-  console.log("slide content ", input)
+  const { toast } = useToast();
+  const { isError, input, setInput, isRequestLoading } = useChatContext();
   const handleOpenNewWindow = () => {
     const newWindow = window.open("", "_blank");
     if (newWindow) {
@@ -37,11 +36,19 @@ export default function WorkspacePage() {
     }
   };
 
+  useEffect(() => {
+    if (isRequestLoading) {
+      toast({
+        title: "Generating slides...",
+        description: "Please wait while we generate the slides.",
+      });
+    }
+  }, []);
+
   return (
     <div className="flex min-h-screen max-h-screen flex-col min-w-full">
       <main className="mx-auto py-10">
         <div className="py-5 space-y-2">
-          {/* <UploadDialog chatInput={chatInput} setChatInput={setChatInput} setIsError={setIsError} setInput={setInput} /> */}
           {isError &&
             <p className="text-red-500 text-sm">Something went wrong. Please try again.</p>
           }
@@ -85,8 +92,6 @@ export default function WorkspacePage() {
             </div>
           </div>
         </div>
-
-
 
       </main>
     </div>
