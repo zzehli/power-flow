@@ -75,7 +75,6 @@ export function ChatBox() {
                 // Remove all 【】 and any content inside them
                 const cleanedMessage = data.message.replace(/【[^】]*】/g, '');
                 setInput(cleanedMessage); // Set the cleaned response
-                setInput(data.message); // Set the response message to editor
             } catch (error) {
                 setIsError(true);
                 console.error("Error:", error);
